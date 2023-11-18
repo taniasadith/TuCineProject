@@ -17,8 +17,13 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>businessdomain</module>
-        <module>infraestructuredomain</module>
+        <module>discovery-service</module>
+        <module>api-gateway</module>
+        <module>config-server</module>
+        <module>account-management-bounded-context</module>
+        <module>cineclub-administration-bounded-context</module>
+        <module>showtime-management-bounded-context</module>
+        <module>reservation-purchase-bounded-context</module>
     </modules>
 
     <properties>

@@ -10,6 +10,16 @@
         <option value="$PROJECT_DIR$/infraestructuredomain/api-gateway/pom.xml" />
       </list>
     </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/businessdomain/Account-Management-Bounded-Context-main/pom.xml" />
+        <option value="$PROJECT_DIR$/businessdomain/cineclub-administration/pom.xml" />
+        <option value="$PROJECT_DIR$/businessdomain/pom.xml" />
+        <option value="$PROJECT_DIR$/infraestructuredomain/api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/infraestructuredomain/discovery-server/pom.xml" />
+        <option value="$PROJECT_DIR$/infraestructuredomain/pom.xml" />
+      </set>
+    </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
