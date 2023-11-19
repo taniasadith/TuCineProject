@@ -1,0 +1,60 @@
+version: '3'
+services:
+  discovery:
+    image: discovery-service:latest
+    ports:
+      - 8761:8761
+
+  config:
+    image: config-service:latest
+    environment:
+      - EUREKA_SERVER=http://discovery:8761/eureka
+    depends_on:
+      - discovery
+    ports:
+      - 8888:8888
+
+  api-gateway:
+    image: api-gateway-service:latest
+    restart: always
+    environment:
+      - EUREKA_SERVER=http://discovery:8761/eureka
+    depends_on:
+      - discovery
+      - config
+    ports:
+      - 8080:8080
+
+  account-management-service:
+    restart: always
+    image: account-service:latest
+    environment:
+      - EUREKA_SERVER=http://discovery:8761/eureka
+      - LOG_LEVEL=DEBUG
+    depends_on:
+      - discovery
+      - config
+
+  cineclub-administration-service:
+    image: cineclub-service:latest
+    environment:
+      - EUREKA_SERVER=http://discovery:8761/eureka
+    depends_on:
+      - discovery
+      - config
+
+  reservation-service:
+    image: reservation-service:latest
+    environment:
+      - EUREKA_SERVER=http://discovery:8761/eureka
+    depends_on:
+      - discovery
+      - config
+
+  showtime-service:
+    image: showtime-service:latest
+    environment:
+      - EUREKA_SERVER=http://discovery:8761/eureka
+    depends_on:
+      - discovery
+      - config
