@@ -9,9 +9,9 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>discovery-service</artifactId>
+    <artifactId>discovery</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>discovery-server</name>
+    <name>discovery</name>
     <description>Discovery server</description>
 
     <properties>

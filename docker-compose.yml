@@ -18,6 +18,7 @@ services:
     image: api-gateway-service:latest
     restart: always
     environment:
+      # Agrega la siguiente línea para que el servicio api-gateway pueda reconocer el servidor Eureka
       - EUREKA_SERVER=http://discovery:8761/eureka
     depends_on:
       - discovery
@@ -30,7 +31,6 @@ services:
     image: account-service:latest
     environment:
       - EUREKA_SERVER=http://discovery:8761/eureka
-      - LOG_LEVEL=DEBUG
     depends_on:
       - discovery
       - config
