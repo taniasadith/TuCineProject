@@ -9,10 +9,20 @@ services:
     ports:
         - 3306:3306
 
+  accountmanagement-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: cineclubaccountmanagment
+    ports:
+        - 3307:3306
+
   discovery:
     image: discovery-service:latest
     ports:
       - 8761:8761
+    #networks:
+    #  - tucineproject_default
 
   config:
     image: config-service:latest
@@ -51,6 +61,8 @@ services:
     depends_on:
       - discovery
       - config
+    ports:
+      - 8081:8081
 
   reservation-service:
     image: reservation-service:latest
