@@ -54,7 +54,7 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public TicketDto modifyTicket(Long id, TicketRecievedDto ticket) {
         Ticket existingTicket = ticketRepository.findById(id)
-                        .orElseThrow(() -> new IllegalArgumentException("Can't find a ticket with that Id"));
+                .orElseThrow(() -> new IllegalArgumentException("Can't find a ticket with that Id"));
         existingTicket.setDateModify(ticket.getDateModify());
         existingTicket.setNumberSeats(ticket.getNumberSeats());
         existingTicket.setUserId(ticket.getUserId());
@@ -127,7 +127,7 @@ public class TicketServiceImpl implements TicketService {
     public void updateShowtimeSeats(Long movieId, int newNumberOfSeats) {
         ResponseEntity<ShowtimeResponse> responseEntity = showtimeClient.getShowtimeByCinemaId(movieId);
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
-            ShowtimeResponse showtimeResponse = responseEntity.getBody();
+            com.example.cineclubreservasventas.shopping.shared.ShowtimeResponse showtimeResponse = responseEntity.getBody();
             if (showtimeResponse != null) {
                 int updatedSeats = showtimeResponse.getNumberOfSeats() - newNumberOfSeats;
                 if (updatedSeats >= 0) {

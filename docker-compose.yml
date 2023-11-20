@@ -7,7 +7,7 @@ services:
       MYSQL_ROOT_PASSWORD: 12345
       MYSQL_DATABASE: cineclubadministration
     ports:
-        - 3306:3306
+        - 33061:3306
 
   accountmanagement-db:
     image: mysql:latest
@@ -15,7 +15,23 @@ services:
       MYSQL_ROOT_PASSWORD: 12345
       MYSQL_DATABASE: cineclubaccountmanagment
     ports:
-        - 3307:3306
+        - 33062:3306
+
+  showtimecontext-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: showtimecontext
+    ports:
+        - 33063:3306
+
+  reservationpurchase-db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345
+      MYSQL_DATABASE: reservationpurchase
+    ports:
+        - 33064:3306
 
   discovery:
     image: discovery-service:latest
@@ -35,7 +51,7 @@ services:
 
   api-gateway:
     image: api-gateway-service:latest
-    restart: always
+    restart: on-failure
     environment:
       # Agrega la siguiente línea para que el servicio api-gateway pueda reconocer el servidor Eureka
       - EUREKA_SERVER=http://discovery:8761/eureka
@@ -46,7 +62,7 @@ services:
       - 8080:8080
 
   account-management-service:
-    restart: always
+    restart: on-failure
     image: account-service:latest
     environment:
       - EUREKA_SERVER=http://discovery:8761/eureka
@@ -56,6 +72,7 @@ services:
     ports:
       - 8082:8082
   cineclub-administration-service:
+    restart: on-failure
     image: cineclub-service:latest
     environment:
       - EUREKA_SERVER=http://discovery:8761/eureka
@@ -66,6 +83,7 @@ services:
       - 8081:8081
 
   reservation-service:
+    restart: on-failure
     image: reservation-service:latest
     environment:
       - EUREKA_SERVER=http://discovery:8761/eureka
@@ -74,9 +92,12 @@ services:
       - config
 
   showtime-service:
+    restart: on-failure
     image: showtime-service:latest
     environment:
       - EUREKA_SERVER=http://discovery:8761/eureka
     depends_on:
       - discovery
       - config
+    ports:
+      - 8084:8084
